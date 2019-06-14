@@ -1,0 +1,29 @@
+.example-card {
+    max-width: 400px;
+    
+  }
+  
+  mat-card-actions mat-card-subtitle {
+      margin-top: 20px;
+      margin-left: 20px;
+  }
+  
+  ::ng-deep .mat-form-field .mat-form-field-infix {
+    width:  300px !important;
+  }
+  
+  
+  .example-header-image {
+    background-image: url('https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/30714642_230030147765902_8684309012201603072_n.jpg?_nc_cat=1&_nc_ht=scontent-arn2-1.xx&oh=c7ae9215528c799c8c02cdd6f11a60b1&oe=5D187F54');
+    background-size: cover;
+  }
+  
+  ::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: lightgrey !important;
+   }
+  ::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: lightgrey !important;
+  } 
+   

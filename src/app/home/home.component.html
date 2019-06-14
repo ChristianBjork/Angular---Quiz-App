@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <button mat-button routerLink="welcome">
+  <h1>{{ title }}!</h1>
+  </button> 
+  <button mat-button routerLink="about">About</button>  
+  
+  
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+
+  <button mat-button *ngIf="!loggedIn" routerLink="login">Login</button>
+  <button mat-button *ngIf="loggedIn" (click)="onLogoutClick()">Logout</button>
+</mat-toolbar>
+
+
+<router-outlet></router-outlet>

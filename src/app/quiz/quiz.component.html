@@ -1,0 +1,20 @@
+
+  <mat-card class="example-card" (click)="emitQuizClicked()">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{quizInput.title | uppercase}}</mat-card-title>
+      <mat-card-subtitle>{{quizInput.created | date: 'dd/MM/yyyy' | lowercase }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/30714642_230030147765902_8684309012201603072_n.jpg?_nc_cat=1&_nc_ht=scontent-arn2-1.xx&oh=c7ae9215528c799c8c02cdd6f11a60b1&oe=5D187F54" alt="QUIZ">
+    <mat-card-subtitle>Created by: {{quizInput.user.username}}</mat-card-subtitle>
+    <mat-card-content>
+      <p>In this quiz we have {{quizInput.questions.length}} question{{quizInput.questions.length>1 || quizInput.questions.length===0?'s':''}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button routerLink="../quiz-display/{{quizInput._id}}">Start Quiz</button>
+      <button mat-button (click)="deleteQuiz()" color="warn" >Delete Quiz</button>
+      
+    </mat-card-actions>
+
+  </mat-card>
+  <br>
