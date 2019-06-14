@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { QuizActions } from '../quiz.actions';
 import { AuthService } from '../auth/auth.service';
-
+// git test
 @Component({
   selector: 'app-login', // name of component
   templateUrl: './login.component.html',
