@@ -3,10 +3,15 @@ import { QuizState } from './store';
 import { tassign } from 'tassign';
 import { TempDataService } from './service/temp-data.service';
 
+
+
 let temp = new TempDataService();
+
+// The AppState for every time we refresh the app. 
+// isLoggedIn = false, quizzes [] is empty, isLoading = false
 const INITIAL_STATE: QuizState = {isLoggedIn: false, quizzes: [], isLoading: false }
 
-export function quizReducer(state: QuizState = INITIAL_STATE, action:any) {
+export function quizReducer(state: QuizState = INITIAL_STATE, action: any) {
  switch (action.type) {
   case QuizActions.DELETE_QUIZ_LOADING:
     return tassign(state, { isLoading: true });
@@ -18,17 +23,6 @@ export function quizReducer(state: QuizState = INITIAL_STATE, action:any) {
 
   case QuizActions.DELETE_QUIZ_FAILED:
     return tassign(state, {isLoading: false});
-
-
-  case QuizActions.GET_QUIZZES_LOADING:  
-    return tassign(state, {isLoading: true});
-
-  case QuizActions.GET_QUIZ_SUCCES:
-    console.log(action.payload)
-    return tassign(state, {isLoading: false, quizzes: action.payload});  
-
-  case QuizActions.GET_QUIZ_FAILED:
-    return tassign(state, {isLoading: false})  
 
 
   case QuizActions.GET_QUIZZES_LOADING:

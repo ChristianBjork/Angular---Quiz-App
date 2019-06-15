@@ -1,17 +1,16 @@
 
-<div *ngIf="quiz">
-  <div >
-    Quiz title: {{quiz.title}}
-  </div>
 
-  <div *ngFor="let question of quiz.questions">
-    {{question.title}}
+<div >
+  Quiz title: {{quizzes.title}}
+</div>
 
-    <div *ngFor="let option of question.options">
-      {{option.answer}}
-    </div>
-    
-    <br>
-    
+<div *ngFor="let question of quizzes.questions">
+  {{question.title}}
+
+  <div *ngFor="let option of question.options">
+    {{option.answer}}
   </div>
+  
+  <br>
+  
 </div>

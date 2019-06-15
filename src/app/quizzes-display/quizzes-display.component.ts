@@ -25,7 +25,7 @@ export class QuizzesDisplayComponent implements OnInit {
     });
 
     this.quizActions.getQuizzes();
-    // this.quizzes = this.data.quizz
+    
   }
 
 

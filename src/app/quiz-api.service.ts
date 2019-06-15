@@ -22,13 +22,6 @@ export class QuizApiService {
     return this.http.get<Quiz[]>(this.baseUrl);
   }
 
-  getChosenQuiz(id: string): Observable<Quiz> {
-
-    const url = `${this.baseUrl}/${id}`;
-
-    return this.http.get<Quiz>(url);
-  }
-
   updateQuiz(quiz: Quiz) : Observable<any> {
     return undefined;
   }

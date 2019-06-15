@@ -14,12 +14,6 @@ constructor (
   static CREATE_QUIZ: string = 'CREATE_QUIZ'; 
   static UPDATE_QUIZ: string = 'UPDATE_QUIZ'; 
 
-  static GET_QUIZ_LOADING: string = "GET_QUIZ_LOADING";
-  static GET_QUIZ_SUCCES: string = "GET_QUIZ_LOADING";
-  static GET_QUIZ_FAILED: string = "GET_QUIZ_FAILED";
-  
-
-
   static DELETE_QUIZ_LOADING: string = 'GET_QUIZZES_LOADING';
   static DELETE_QUIZ_SUCCES: string = 'GET_QUIZZES_SUCCES';
   static DELETE_QUIZ_FAILED: string = 'GET_QUIZZES_FAILED';
@@ -32,9 +26,26 @@ constructor (
 
   static CREATE_RATING: string = 'CREATE_RATING'; 
 
+  getQuiz(id: string) : void { 
+    this.ngRedux.dispatch({ type: QuizActions.GET_QUIZZES_LOADING }); // start a "spinner"
 
+    // call the ws
+    this.api.getAllQuizzes().subscribe(quizzes => {
+      console.log(quizzes.find(quiz => quiz._id === id));
+      this.ngRedux.dispatch({
+        type: QuizActions.GET_QUIZZES_SUCCESS,
+        payload: quizzes.find(quiz => quiz._id === id)
+      })
+    }, error => {
+      this.ngRedux.dispatch({
+        type: QuizActions.GET_QUIZZES_FAILED,
+        payload: error
+      })
+    });
+  }
   
 
+  
   getQuizzes() : void {
     this.ngRedux.dispatch({ type: QuizActions.GET_QUIZZES_LOADING }); // start a "spinner"
 
@@ -53,38 +64,6 @@ constructor (
       })
     });
   }
-
-  getQuiz(id: string) : void {
-    this.ngRedux.dispatch({ type: QuizActions.GET_QUIZZES_LOADING });
-
-    // Get the id from the url
-    
-
-    console.log("1");
-    console.log(id)
-    
-
-    // Find the quiz object based on id
-    
-    this.api.getChosenQuiz(id).subscribe(quiz => {
-      console.log("2");
-      console.log(quiz.title)
-    this.ngRedux.dispatch({
-      type: QuizActions.GET_QUIZ_SUCCES,
-      payload: quiz
-    })
-
-    }, error => {
-      console.log("3");
-      this.ngRedux.dispatch({
-        type: QuizActions.GET_QUIZZES_FAILED,
-        payload: error
-      })
-    });
-  }
-    
-  
-
 
   deleteQuiz(quiz: Quiz) : void {
     this.ngRedux.dispatch({type: QuizActions.DELETE_QUIZ_LOADING});
@@ -107,6 +86,9 @@ constructor (
     });
     
   }
+
+
+
 
   createRating(rating: Rating, quizId: string) {
     this.ngRedux.dispatch({

@@ -15,6 +15,8 @@ import { QuizApiService } from '../quiz-api.service';
 })
 
 export class QuizDisplayComponent implements OnInit {
+  quizzes: Quiz[];
+  isLoading: boolean;
 
   
  
@@ -22,8 +24,7 @@ export class QuizDisplayComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private ngRedux: NgRedux<AppState>,
-    private quizActions: QuizActions,
-    private quizApi: QuizApiService
+    private quizActions: QuizActions
 
     ) { }
 
@@ -31,10 +32,19 @@ export class QuizDisplayComponent implements OnInit {
  
  
   ngOnInit() {
+    
+    this.ngRedux.select(state => state.quizzes).subscribe(result => {
+      this.quizzes = result.quizzes;
+      this.isLoading = result.isLoading;
+    });
 
     const id = this.route.snapshot.paramMap.get('id');
+
+    this.quizActions.getQuiz(id)
     
-    this.quizActions.getQuiz(id);
+    
+    
+    
     
 
     
@@ -44,4 +54,7 @@ export class QuizDisplayComponent implements OnInit {
     
 
   }
+  
+
+
 }
