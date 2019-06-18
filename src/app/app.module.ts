@@ -23,7 +23,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule, MatTableModule, MatProgressSpinnerModule, 
          MatGridListModule, MatDividerModule, MatCheckboxModule,
          MatRippleModule, 
-         MatRadioModule} from '@angular/material';
+         MatRadioModule,
+         MatNativeDateModule,
+         MatDatepickerModule,
+         MatListModule} from '@angular/material';
 
 import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
 import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
@@ -34,6 +37,7 @@ import { QuizCreateComponent } from './quiz-create/quiz-create.component';
 import { QuizDisplayComponent } from './quiz-display/quiz-display.component';
 import { QuizzesDisplayComponent } from './quizzes-display/quizzes-display.component';
 import { QuizPipe } from './pipes/quiz.pipe';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
 
 
 
@@ -53,7 +57,8 @@ import { QuizPipe } from './pipes/quiz.pipe';
     QuizCreateComponent,
     QuizDisplayComponent,
     QuizzesDisplayComponent,
-    QuizPipe
+    QuizPipe,
+    UserRegistrationComponent
   ],
   imports: [
     RouterModule,
@@ -71,7 +76,9 @@ import { QuizPipe } from './pipes/quiz.pipe';
     MatToolbarModule,MatMenuModule,MatIconModule, 
     MatProgressSpinnerModule, MatCardModule, MatDialogModule, 
     MatTableModule, MatGridListModule, MatDividerModule, 
-    MatCheckboxModule, MatRippleModule, MatRadioModule
+    MatCheckboxModule, MatRippleModule, MatRadioModule,
+    MatNativeDateModule, MatDatepickerModule, MatListModule,
+    
 
   ],
   providers: [],

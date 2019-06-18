@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { AppState } from './store';
-import { Quiz, Rating } from './entities/quiz';
+import { Quiz } from './entities/quiz';
 import { QuizApiService } from './quiz-api.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Injectable({ providedIn: 'root'})
 export class QuizActions {
 constructor (
-  private ngRedux: NgRedux<AppState>, private api: QuizApiService, private route: ActivatedRoute) {} 
+  private ngRedux: NgRedux<AppState>, 
+  private api: QuizApiService, 
+  private route: ActivatedRoute) {} 
   
   static LOG_IN: string = 'LOG_IN'; 
   static CREATE_QUIZ_LOADING: string = 'CREATE_QUIZ_LOADING'; 

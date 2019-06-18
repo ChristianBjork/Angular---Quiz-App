@@ -1,11 +1,8 @@
 import { QuizActions } from './quiz.actions';
 import { QuizState } from './store';
 import { tassign } from 'tassign';
-import { TempDataService } from './service/temp-data.service';
 
 
-
-let temp = new TempDataService();
 
 // The AppState for every time we refresh the app. 
 // isLoggedIn = false, quizzes [] is empty, isLoading = false

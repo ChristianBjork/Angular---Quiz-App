@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-import { Router } from '@angular/router';
 import { QuizActions } from '../quiz.actions';
 import { Quiz } from '../entities/quiz';
 import { Gender } from '../entities/user';
-import { QuizApiService } from '../quiz-api.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-quiz-create',
@@ -14,11 +14,12 @@ import { QuizApiService } from '../quiz-api.service';
 export class QuizCreateComponent implements OnInit {
 
   createQuiz: FormGroup;
+  
 
   constructor(
     private fb: FormBuilder, 
-    private router: Router,  
-    private quizActions: QuizActions
+    private quizActions: QuizActions,
+    private router: Router
     ) { }
 
   saveQuiz() {
@@ -37,7 +38,7 @@ export class QuizCreateComponent implements OnInit {
 
 
     this.quizActions.createQuiz(quiz)
-  
+    this.router.navigate(['/portal/display-quizzes']);
     
   }
 

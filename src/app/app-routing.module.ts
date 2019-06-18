@@ -13,6 +13,7 @@ import { QuizCreateComponent } from './quiz-create/quiz-create.component';
 import { QuizDisplayComponent } from './quiz-display/quiz-display.component';
 import { QuizzesDisplayComponent } from './quizzes-display/quizzes-display.component';
 import { AuthGuard } from './auth/auth.guard';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
 
 const routes: Routes = [
   // if baseUrl => go to ?
@@ -22,6 +23,7 @@ const routes: Routes = [
     {path: 'about', component: AboutComponent },
     {path: 'welcome', component: WelcomeComponent },
     {path: 'login', component: LoginComponent },
+    {path: 'user-registration', component: UserRegistrationComponent }
   ]},
 
   {path: 'quiz-portal', component: QuizPortalComponent, /*canActivate:[AuthGuard] ,*/children: [
