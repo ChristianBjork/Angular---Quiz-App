@@ -24,7 +24,7 @@ describe('quiz reducer tests', () => {
     let startState = {quizzes: []} as QuizState;
     deepFreeze(startState);
     let quiz = { title: 'Test quiz', questions: [] } as Quiz;
-    let actionObj = { type: QuizActions.CREATE_QUIZ, payload: quiz };
+    let actionObj = { type: QuizActions.CREATE_QUIZ_SUCCES, payload: quiz };
     
     // Act
     let newStateObj = quizReducer(startState, actionObj);

@@ -20,7 +20,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDialogModule, MatTableModule, MatProgressSpinnerModule, MatGridListModule, MatDividerModule, MatCheckboxModule } from '@angular/material';
+import { MatDialogModule, MatTableModule, MatProgressSpinnerModule, 
+         MatGridListModule, MatDividerModule, MatCheckboxModule,
+         MatRippleModule, 
+         MatRadioModule} from '@angular/material';
 
 import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
 import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
@@ -68,7 +71,7 @@ import { QuizPipe } from './pipes/quiz.pipe';
     MatToolbarModule,MatMenuModule,MatIconModule, 
     MatProgressSpinnerModule, MatCardModule, MatDialogModule, 
     MatTableModule, MatGridListModule, MatDividerModule, 
-    MatCheckboxModule
+    MatCheckboxModule, MatRippleModule, MatRadioModule
 
   ],
   providers: [],

@@ -18,8 +18,8 @@ export class QuizCreateComponent implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private router: Router,  
-    private quizActions: QuizActions, 
-    private quizApi: QuizApiService) { }
+    private quizActions: QuizActions
+    ) { }
 
   saveQuiz() {
     // console.log(this.createQuiz.value);
@@ -29,28 +29,15 @@ export class QuizCreateComponent implements OnInit {
     let quiz = this.createQuiz.value as Quiz;
     quiz.user = {  // Hardcoded. We remove when we have a proper login
       _id: '1', 
-      username: 'Veronique', 
-      email: 'v@ve.dk', 
+      username: 'chris', 
+      email: 'c@ve.dk', 
       gender: Gender.FEMALE, 
       birthDate: undefined 
     };
 
-    console.log("1");
-    this.quizApi.createQuiz(quiz).subscribe(quizFromWs => {
-      console.log(quizFromWs);
-      console.log("3");
-      this.quizActions.createQuiz(quizFromWs);
-      this.router.navigate(['/quiz-portal/quizzes-display']);
-    }, error => {
-      // Write some code for if the ws breaks.
-      console.log("something bad happened", error);
-      // this.quizActions.createQuizFailed(error);
-    });
-    console.log("2");
 
-    
-    // this.data.saveQuiz(quiz);
-    
+    this.quizActions.createQuiz(quiz)
+  
     
   }
 
@@ -64,15 +51,15 @@ export class QuizCreateComponent implements OnInit {
     const options = question.controls.options as FormArray;
     options.push(this.createNewOptionGroup());
     options.push(this.createNewOptionGroup());
-    // console.log(options);
+    
     questions.push(question);
   }
   createNewOption(questionIndex: number){
     const option = this.createNewOptionGroup();
     const questions = this.createQuiz.controls.questions as FormArray;
-    // console.log(questions);
+    
     const options = (<FormArray>questions.controls[questionIndex]).controls['options'] as FormArray;
-    // console.log(options);
+    
     options.push(option);
   }
   private createNewOptionGroup(): FormGroup {

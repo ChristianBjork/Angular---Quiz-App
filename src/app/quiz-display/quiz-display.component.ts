@@ -17,7 +17,7 @@ import { QuizApiService } from '../quiz-api.service';
 export class QuizDisplayComponent implements OnInit {
   quizzes: Quiz[];
   isLoading: boolean;
-
+  chosenAnswer: string;
   
  
 
@@ -25,7 +25,6 @@ export class QuizDisplayComponent implements OnInit {
     private route: ActivatedRoute,
     private ngRedux: NgRedux<AppState>,
     private quizActions: QuizActions
-
     ) { }
 
   
@@ -41,16 +40,6 @@ export class QuizDisplayComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
 
     this.quizActions.getQuiz(id)
-    
-    
-    
-    
-    
-
-    
-
-    // Load the quiz in the html
-    
     
 
   }

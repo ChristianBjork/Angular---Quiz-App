@@ -11,7 +11,10 @@ constructor (
   private ngRedux: NgRedux<AppState>, private api: QuizApiService, private route: ActivatedRoute) {} 
   
   static LOG_IN: string = 'LOG_IN'; 
-  static CREATE_QUIZ: string = 'CREATE_QUIZ'; 
+  static CREATE_QUIZ_LOADING: string = 'CREATE_QUIZ_LOADING'; 
+  static CREATE_QUIZ_SUCCES: string = 'CREATE_QUIZ_SUCCES';
+  static CREATE_QUIZ_FAILED: string = 'CREATE_QUIZ_FAILED';
+
   static UPDATE_QUIZ: string = 'UPDATE_QUIZ'; 
 
   static DELETE_QUIZ_LOADING: string = 'GET_QUIZZES_LOADING';
@@ -87,23 +90,36 @@ constructor (
     
   }
 
-
-
-
-  createRating(rating: Rating, quizId: string) {
-    this.ngRedux.dispatch({
-      type: QuizActions.CREATE_RATING,
-      // payload: {rating: rating, quizId: quizId}
-      payload: {rating, quizId}
-    })
-  }
-
   createQuiz(quiz: Quiz) :void {
+    this.ngRedux.dispatch({type: QuizActions.CREATE_QUIZ_LOADING});
+
+    this.api.createQuiz(quiz).subscribe(quiz_created => {
+      console.log(quiz_created);
+      
+
     this.ngRedux.dispatch({
-      type: QuizActions.CREATE_QUIZ,
-      payload: quiz
-    }); 
+      type: QuizActions.CREATE_QUIZ_SUCCES,
+      payload: quiz_created
+    })
+  }, error => {
+    this.ngRedux.dispatch({
+      type: QuizActions.CREATE_QUIZ_FAILED,
+      payload: error
+    })
+  }); 
   }
+
+
+
+  // createRating(rating: Rating, quizId: string) {
+  //   this.ngRedux.dispatch({
+  //     type: QuizActions.CREATE_RATING,
+  //     // payload: {rating: rating, quizId: quizId}
+  //     payload: {rating, quizId}
+  //   })
+  // }
+
+ 
 
   
 

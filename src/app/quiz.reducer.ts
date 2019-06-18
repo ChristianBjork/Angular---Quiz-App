@@ -35,18 +35,23 @@ export function quizReducer(state: QuizState = INITIAL_STATE, action: any) {
   case QuizActions.GET_QUIZZES_FAILED:
     return tassign(state, {isLoading: false});
 
-   case QuizActions.CREATE_QUIZ:
-   // Create a copy of the array with the original quiz objects + action.payload.
-   // return a new state object.
-   
-   // Javascript spread operator (...)
-    // state.quizzes.push(action.payload);
-    // return state;
-    // newState.push(action.payload);
-
-   return tassign(state, { quizzes: [...state.quizzes, action.payload] });
-
   
+  case QuizActions.CREATE_QUIZ_LOADING:
+    return tassign(state, { isLoading: true });  
+
+  case QuizActions.CREATE_QUIZ_SUCCES:
+  // Create a copy of the array with the original quiz objects + action.payload.
+  // return a new state object.
+  
+  // Javascript spread operator (...)
+  // state.quizzes.push(action.payload);
+  // return state;
+  // newState.push(action.payload);
+
+    return tassign(state, { quizzes: [...state.quizzes, action.payload] });
+
+  case QuizActions.CREATE_QUIZ_FAILED:
+    return tassign(state, {isLoading: false});
   
   
    case QuizActions.CREATE_RATING:

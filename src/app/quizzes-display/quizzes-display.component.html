@@ -1,7 +1,7 @@
+<div *ngIf="isLoading" style="text-align: center;" style="display: inline-block;" class="fa fa-pencil" aria-hidden="true">
+        <mat-spinner ></mat-spinner>
+  </div>
 
-<div *ngIf="isLoading">
-  Please wait, we are loading the quizzes
-</div>
 <div>
   <mat-form-field >
     <input matInput placeholder="Search Quiz" value="" [(ngModel)]="userSearch">
@@ -10,6 +10,7 @@
 
 
 <div class="cardList">
+    
   
   <ng-container *ngFor="let quiz of quizzes | quizPipe: userSearch">
 
@@ -22,3 +23,4 @@
   </ng-container>
 
 </div>
+

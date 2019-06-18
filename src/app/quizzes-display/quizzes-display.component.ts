@@ -19,6 +19,7 @@ export class QuizzesDisplayComponent implements OnInit {
 
   ngOnInit() {
     
+    
     this.ngRedux.select(state => state.quizzes).subscribe(result => {
       this.quizzes = result.quizzes;
       this.isLoading = result.isLoading;

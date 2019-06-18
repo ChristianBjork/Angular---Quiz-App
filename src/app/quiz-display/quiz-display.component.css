@@ -1,0 +1,21 @@
+
+.example-radio-group {
+display: flex;
+flex-direction: column;
+margin: 15px 0;
+}
+
+.example-radio-button {
+margin: 5px;
+}
+
+.example-card {
+    max-width: 400px;
+    
+  }
+mat-card-actions mat-card-subtitle {
+    margin-top: 20px;
+    margin-left: 20px;
+    }  
+
+    
