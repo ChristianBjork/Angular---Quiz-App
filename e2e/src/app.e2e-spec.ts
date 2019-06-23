@@ -8,6 +8,17 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
+  it('1.0: Verify that login page as "login"', () => {
+    browser.get('/home/login')
+
+    expect(browser.getCurrentUrl()).toMatch('/home/login');
+    
+  })
+
+
+
+
+
   //1.0: Verify that i can go to the login component
   it('1.0: Verify that i can go to the login component', () => {
     browser.get('/home/login');

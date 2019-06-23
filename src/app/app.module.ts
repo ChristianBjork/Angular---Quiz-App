@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule} from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -36,8 +36,9 @@ import { QuizPortalComponent } from './quiz-portal/quiz-portal.component';
 import { QuizCreateComponent } from './quiz-create/quiz-create.component';
 import { QuizDisplayComponent } from './quiz-display/quiz-display.component';
 import { QuizzesDisplayComponent } from './quizzes-display/quizzes-display.component';
-import { QuizPipe } from './pipes/quiz.pipe';
+import { QuizPipe, QuizLikesPipe } from './pipes/quiz.pipe';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
+
 
 
 
@@ -58,7 +59,10 @@ import { UserRegistrationComponent } from './user-registration/user-registration
     QuizDisplayComponent,
     QuizzesDisplayComponent,
     QuizPipe,
-    UserRegistrationComponent
+    QuizLikesPipe,
+    UserRegistrationComponent,
+    
+    
   ],
   imports: [
     RouterModule,
@@ -68,6 +72,7 @@ import { UserRegistrationComponent } from './user-registration/user-registration
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    
     
 
     NgReduxModule, NgReduxRouterModule.forRoot(),
@@ -82,7 +87,9 @@ import { UserRegistrationComponent } from './user-registration/user-registration
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { 
   constructor(private ngRedux: NgRedux<AppState>,

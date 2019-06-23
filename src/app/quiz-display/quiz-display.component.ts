@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Quiz, Question } from '../entities/quiz';
-import { TempDataService } from '../service/temp-data.service';
+import { Quiz, Question, Option} from '../entities/quiz';
 import { ActivatedRoute } from '@angular/router';
 import { NgRedux } from '@angular-redux/store';
 import { AppState } from '../store';
-import { QuizActions } from '../quiz.actions';
-import { QuizApiService } from '../quiz-api.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -16,33 +14,78 @@ import { QuizApiService } from '../quiz-api.service';
 
 export class QuizDisplayComponent implements OnInit {
   quizzes: Quiz[];
-  isLoading: boolean;
-  chosenAnswer: string;
-  
- 
+  quiz: Quiz = new Quiz();
+  selectedAnswer: string;
+  currentUserName: string;
+  currentQuestion: Question;
+  i: number = 1;
+  isNextQuiz: boolean = true;
+  correctAnswers: number = 0;
+  showResult: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
-    private ngRedux: NgRedux<AppState>,
-    private quizActions: QuizActions
+    private ngRedux: NgRedux<AppState>
     ) { }
-
+ 
   
- 
- 
   ngOnInit() {
-    
-    this.ngRedux.select(state => state.quizzes).subscribe(result => {
-      this.quizzes = result.quizzes;
-      this.isLoading = result.isLoading;
+
+
+    this.ngRedux.select(state => state.quizzes).subscribe(res => {
+      this.quizzes = res.quizzes;
     });
+
+    this.ngRedux.select(state => state.users.currentUser).subscribe(res => {
+      this.currentUserName = res.username;
+    })
 
     const id = this.route.snapshot.paramMap.get('id');
 
-    this.quizActions.getQuiz(id)
-    
+    this.quiz = this.quizzes.find(q => q._id === id);
+    this.currentQuestion = this.quiz.questions[0];
+    if (this.quiz.questions[this.i] == undefined) {
+      this.isNextQuiz = false
+    }
+  
+  }
+
+ 
+
+  onNextQuiz() {
+    console.log(this.selectedAnswer)
+
+    const validateOption = this.currentQuestion.options.find(sQ => sQ.answer === this.selectedAnswer)
+    if(validateOption.answer == this.selectedAnswer && validateOption.correct == true) {
+      this.correctAnswers += 1;
+      console.log(this.correctAnswers)
+    }
+
+    if(this.quiz.questions[this.i] != undefined) {
+      this.currentQuestion = this.quiz.questions[this.i];
+      this.i += 1
+
+      
+
+
+      if (this.quiz.questions[this.i] != undefined) {
+        this.isNextQuiz = false
+
+  
+      }
+    }
+    else {
+      this.isNextQuiz = false
+    }
 
   }
+
+  onShowResult() {
+    
+    this.showResult = true;
+  }
+
+  
   
 
 

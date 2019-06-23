@@ -1,5 +1,9 @@
 <mat-toolbar color="primary">
-  <span >Quiz App</span>
+
+  <button mat-button routerLink="../home/welcome">
+      <h1>{{ title }}!</h1>
+  </button>
+  
   <!-- <button mat-button *ngIf="!authService.isLoggedIn" routerLink="portal/find-quiz">Find a quiz</button> -->
   <button mat-button routerLink="/home/about">About</button>
   <button mat-button routerLink="quiz-create">Create a new quiz</button>

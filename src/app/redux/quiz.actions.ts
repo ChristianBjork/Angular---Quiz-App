@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
-import { AppState } from './store';
-import { Quiz } from './entities/quiz';
-import { QuizApiService } from './quiz-api.service';
+import { AppState } from '../store';
+import { Quiz } from '../entities/quiz';
+import { QuizApiService } from '../service/quiz-api.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Injectable({ providedIn: 'root'})
@@ -12,7 +12,7 @@ constructor (
   private api: QuizApiService, 
   private route: ActivatedRoute) {} 
   
-  static LOG_IN: string = 'LOG_IN'; 
+ 
   static CREATE_QUIZ_LOADING: string = 'CREATE_QUIZ_LOADING'; 
   static CREATE_QUIZ_SUCCES: string = 'CREATE_QUIZ_SUCCES';
   static CREATE_QUIZ_FAILED: string = 'CREATE_QUIZ_FAILED';
@@ -30,6 +30,8 @@ constructor (
   static GET_QUIZZES_FAILED: string = 'GET_QUIZZES_FAILED';
 
   static CREATE_RATING: string = 'CREATE_RATING'; 
+  static LOG_IN: string = 'LOG_IN'; 
+  static CREATE_LIKE: string = 'CREATE_LIKE';
 
   getQuiz(id: string) : void { 
     this.ngRedux.dispatch({ type: QuizActions.GET_QUIZZES_LOADING }); // start a "spinner"
@@ -48,6 +50,7 @@ constructor (
       })
     });
   }
+  
   
 
   
@@ -76,7 +79,6 @@ constructor (
     console.log("1");
     this.api.deleteQuiz(quiz._id).subscribe(q => {
       console.log(q);
-      //console.log(q._id);
       console.log("2");
       this.ngRedux.dispatch({
         type: QuizActions.DELETE_QUIZ_SUCCES,
@@ -109,6 +111,21 @@ constructor (
       payload: error
     })
   }); 
+  }
+
+  updateLike(quiz: Quiz) {
+
+    this.api.updateQuiz(quiz).subscribe(() => {
+      this.ngRedux.dispatch({
+        type: QuizActions.UPDATE_QUIZ,
+        payload: quiz
+      })
+    });
+    
+    this.ngRedux.dispatch({
+      type: QuizActions.CREATE_LIKE,
+      payload: { quiz }
+    })
   }
 
 

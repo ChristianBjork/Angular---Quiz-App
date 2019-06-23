@@ -1,12 +1,12 @@
 
 .example-radio-group {
-display: flex;
-flex-direction: column;
-margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
 }
 
 .example-radio-button {
-margin: 5px;
+  margin: 5px;
 }
 
 .example-card {
@@ -18,4 +18,6 @@ mat-card-actions mat-card-subtitle {
     margin-left: 20px;
     }  
 
-    
+
+ 
+

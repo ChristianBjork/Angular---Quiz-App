@@ -20,3 +20,30 @@ export class QuizPipe implements PipeTransform {
 
 
 }
+
+@Pipe({
+  name: 'quizLikesPipe' //used when I apply the pipe(filter)
+})
+export class QuizLikesPipe implements PipeTransform {
+
+  transform(quizzes: Quiz[], search?: number): any {
+    console.log(quizzes);
+    console.log(search);
+    
+    if(!search || search === undefined) {return quizzes;}
+ 
+   
+      quizzes.sort((a: any, b: any) => {
+        if(a.like <= b.like) {
+          return 1;
+        }else {
+          return -1
+        }
+      });
+  
+    
+    return quizzes.filter(quiz => quiz.like >= search)
+  }
+
+
+}

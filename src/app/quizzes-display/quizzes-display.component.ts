@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Quiz } from '../entities/quiz';
 import { NgRedux } from '@angular-redux/store';
 import { AppState } from '../store';
-import { QuizActions } from '../quiz.actions';
+import { QuizActions } from '../redux/quiz.actions';
 
 
 @Component({
@@ -14,18 +14,21 @@ export class QuizzesDisplayComponent implements OnInit {
   quizzes: Quiz[];
   isLoading: boolean;
   userSearch: string;
-
-  constructor(private ngRedux: NgRedux<AppState>, private quizActions: QuizActions ) { }
+  userSearchByLike: number;
+  
+  constructor(
+    private ngRedux: NgRedux<AppState>, 
+    private quizActions: QuizActions ) { }
 
   ngOnInit() {
+    this.quizActions.getQuizzes();
     
-    
-    this.ngRedux.select(state => state.quizzes).subscribe(result => {
-      this.quizzes = result.quizzes;
-      this.isLoading = result.isLoading;
+    this.ngRedux.select(state => state.quizzes).subscribe(res => {
+      this.quizzes = res.quizzes;
+      this.isLoading = res.isLoading;
     });
 
-    this.quizActions.getQuizzes();
+    
     
   }
 

@@ -4,7 +4,10 @@
 
 <div>
   <mat-form-field >
-    <input matInput placeholder="Search Quiz" value="" [(ngModel)]="userSearch">
+    <input matInput placeholder="Search By Quiz Title" value="" [(ngModel)]="userSearch">
+  </mat-form-field>
+  <mat-form-field >
+    <input matInput placeholder="Search By Quiz Likes" value="" [(ngModel)]="userSearchByLike">
   </mat-form-field>
 </div>
 
@@ -12,7 +15,7 @@
 <div class="cardList">
     
   
-  <ng-container *ngFor="let quiz of quizzes | quizPipe: userSearch">
+  <ng-container *ngFor="let quiz of quizzes | quizPipe: userSearch | quizLikesPipe: userSearchByLike ">
 
     <app-quiz fxFlex="0 1 calc(33.3% - 32px)"
       [quizInput]="quiz"

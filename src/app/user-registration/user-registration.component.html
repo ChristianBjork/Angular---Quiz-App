@@ -20,19 +20,19 @@
             <input  matInput  formControlName="email" placeholder="Email" name="email" required>
           </mat-form-field>
           
-          <section class="example-section">
+          <!-- <section class="example-section">
             <label class="example-margin">Gender:</label>
             <br>
-            <mat-radio-group formArrayName="chooseGender">
+            <mat-radio-group formArrayName="gender">
               <mat-radio-button  class="example-margin" value="after">Male</mat-radio-button>
               <mat-radio-button  class="example-margin" value="before">Female</mat-radio-button>
               <mat-radio-button  class="example-margin" value="before">Other</mat-radio-button>
             </mat-radio-group>
-          </section>
+          </section> -->
       
           <mat-form-field>
             <mat-label>Date of Birth</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="birthDate" placeholder="Choose a date">
+        <input matInput [matDatepicker]="picker" formControlName="birthDate" placeholder="Choose a date" required>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>

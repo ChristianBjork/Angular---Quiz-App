@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../entities/user';
-import { UserActions } from '../user-redux/user.actions';
+import { UserActions } from '../redux/user.actions';
 import { Router } from '@angular/router';
 
 @Component({
@@ -26,13 +26,14 @@ export class UserRegistrationComponent implements OnInit {
       email:    ['', [Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])]],
-      chooseGender:   this.fb.array([]),
+      // gender:   ['', this.fb.array([])],
       birthDate: ['', Validators.required]
     })
   }
 
   saveUser(){
     let user = this.createUser.value as User;
+    
 
     this.userActions.userRegister(user)
     this.router.navigate(['/home/login']);

@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizPortalComponent implements OnInit {
 
+  title = 'QuizApp';
+
   constructor() { }
 
   ngOnInit() {

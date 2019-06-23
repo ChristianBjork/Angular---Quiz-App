@@ -1,6 +1,7 @@
 import { QuizActions } from './quiz.actions';
-import { QuizState } from './store';
+import { QuizState } from '../store';
 import { tassign } from 'tassign';
+import { Quiz } from '../entities/quiz';
 
 
 
@@ -49,32 +50,42 @@ export function quizReducer(state: QuizState = INITIAL_STATE, action: any) {
 
   case QuizActions.CREATE_QUIZ_FAILED:
     return tassign(state, {isLoading: false});
+
+
+  // case QuizActions.CREATE_LIKE:
+    
+
+  //   return  tassign(state, { quizzes: [...state.quizzes, action.payload] })
   
   
-   case QuizActions.CREATE_RATING:
-    // action.payload: rating object, id of quiz
-    // action.payload.rating
-    // action.payload.quizId
-    // How to add an object to an array within an object in an array.
+  //  case QuizActions.CREATE_RATING:
+  //   // action.payload: rating object, id of quiz
+  //   // action.payload.rating
+  //   // action.payload.quizId
+  //   // How to add an object to an array within an object in an array.
 
-    // //Perhaps this works? 30% chance of working...
-    let quizToUpdate = state.quizzes.find(quiz => quiz._id === action.payload.quizId);
-    let pos = state.quizzes.findIndex(quiz => quiz._id === action.payload.quizId);
+  //   // //Perhaps this works? 30% chance of working...
+  //   let quizToUpdate = state.quizzes.find(quiz => quiz._id === action.payload.quizId);
+  //   let pos = state.quizzes.findIndex(quiz => quiz._id === action.payload.quizId);
 
-    let ratingArr = [...quizToUpdate.ratings, action.payload.quiz];
-    let quizArray = [...state.quizzes.slice(0,pos), quizToUpdate, ...state.quizzes.slice(pos+1)];
-    quizArray[pos].ratings = ratingArr;
+  //   let ratingArr = [...quizToUpdate.ratings, action.payload.quiz];
+  //   let quizArray = [...state.quizzes.slice(0,pos), quizToUpdate, ...state.quizzes.slice(pos+1)];
+  //   quizArray[pos].ratings = ratingArr;
 
-    console.log("ratingArr", ratingArr);
-    console.log("quizArray", quizArray);
+  //   console.log("ratingArr", ratingArr);
+  //   console.log("quizArray", quizArray);
 
-    return tassign(state, {quizzes: quizArray});
+  //   return tassign(state, {quizzes: quizArray});
     
    case QuizActions.UPDATE_QUIZ:
     // action.payload: new quiz object
     // How to replace an object in an array without mutating state.
-    return 
+    const quiz_list = [...state.quizzes]
+    const quiz_index = quiz_list.find(u => u._id === action.payload._id);
 
+    return tassign(state, { quizzes: quiz_list });
+
+  
    
 
 

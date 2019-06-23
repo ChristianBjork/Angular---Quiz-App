@@ -26,7 +26,7 @@ const routes: Routes = [
     {path: 'user-registration', component: UserRegistrationComponent }
   ]},
 
-  {path: 'quiz-portal', component: QuizPortalComponent, /*canActivate:[AuthGuard] ,*/children: [
+  {path: 'quiz-portal', component: QuizPortalComponent,/* canActivate:[AuthGuard], */children: [
     {path: 'quiz-create', component: QuizCreateComponent},
     {path: 'quiz-display/:id', component: QuizDisplayComponent},
     {path: 'quizzes-display', component: QuizzesDisplayComponent}

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-import { QuizActions } from '../quiz.actions';
+import { QuizActions } from '../redux/quiz.actions';
 import { Quiz } from '../entities/quiz';
-import { Gender } from '../entities/user';
+import { Gender, User } from '../entities/user';
 import { Router } from '@angular/router';
+import { NgRedux } from '@angular-redux/store';
+import { AppState } from '../store';
 
 
 @Component({
@@ -14,13 +16,29 @@ import { Router } from '@angular/router';
 export class QuizCreateComponent implements OnInit {
 
   createQuiz: FormGroup;
+  user: User;
   
 
   constructor(
     private fb: FormBuilder, 
     private quizActions: QuizActions,
-    private router: Router
+    private router: Router,
+    private ngRedux: NgRedux<AppState>
     ) { }
+
+
+  ngOnInit() {
+    this.createQuiz = this.fb.group({
+      title: [''],
+      questions: this.fb.array([]),
+      
+    })
+
+    this.ngRedux.select(state => state.users).subscribe(res => {
+      this.user = res.currentUser
+    })
+
+  }
 
   saveQuiz() {
     // console.log(this.createQuiz.value);
@@ -28,17 +46,12 @@ export class QuizCreateComponent implements OnInit {
     // save a user who created this quiz.
     // hardcode a user until we have a proper login.
     let quiz = this.createQuiz.value as Quiz;
-    quiz.user = {  // Hardcoded. We remove when we have a proper login
-      _id: '1', 
-      username: 'chris', 
-      email: 'c@ve.dk', 
-      gender: Gender.FEMALE, 
-      birthDate: undefined 
-    };
+    quiz.user = this.user
+    quiz.like = 10;
 
 
     this.quizActions.createQuiz(quiz)
-    this.router.navigate(['/portal/display-quizzes']);
+    this.router.navigate(['quiz-portal/quizzes-display']);
     
   }
 
@@ -71,12 +84,6 @@ export class QuizCreateComponent implements OnInit {
   }
 
 
-  ngOnInit() {
-    this.createQuiz = this.fb.group({
-      title: [''],
-      questions: this.fb.array([]),
-     
-    })
-  }
+ 
 
 }

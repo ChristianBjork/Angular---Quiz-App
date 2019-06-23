@@ -1,8 +1,8 @@
 import { routerReducer } from '@angular-redux/router';
 import { combineReducers } from 'redux';
-import { quizReducer } from './quiz.reducer';
+import { quizReducer } from './redux/quiz.reducer';
 import { Quiz } from './entities/quiz';
-import { userReducer } from './user-redux/user-reducer';
+import { userReducer } from './redux/user.reducer';
 import { User } from './entities/user';
 
 
@@ -10,6 +10,7 @@ export class UserState {
   users: User [];
   isLoggedIn: boolean;
   isLoading: boolean;
+  currentUser: User;
 }
 
 export class QuizState {

@@ -1,7 +1,7 @@
 import { QuizActions } from './quiz.actions';
 import { quizReducer } from './quiz.reducer';
-import { Quiz } from './entities/quiz';
-import { QuizState } from './store';
+import { Quiz } from '../entities/quiz';
+import { QuizState } from '../store';
 var deepFreeze = require('deep-freeze');
 
 describe('quiz reducer tests', () => {
@@ -14,7 +14,7 @@ describe('quiz reducer tests', () => {
     let actionObj = { 
       type: QuizActions.LOG_IN, payload: true};
     let newStateObj = quizReducer(startState, actionObj);
-    expect(newStateObj).toEqual({isLoggedIn: true, quizzes: []});
+    expect(newStateObj).toEqual({isLoggedIn: true, quizzes: [], isLoading: false});
   });
 
   it('should create new ', () => {

@@ -3,12 +3,13 @@ import { User } from './user';
 export class Quiz {
   _id: string;
   visible: boolean;
-  user: User; // This might be old (not updated) data.
+  user: User; 
   title: string;
   created?: Date; // ? = optional field
   questions: Question[]; 
   ratings?: Rating[];
   customerId?: string;
+  like?: number;
 }
 export class Question {
   title: string;

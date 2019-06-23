@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Quiz } from './entities/quiz';
+import { Quiz } from '../entities/quiz';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class QuizApiService {
-  private baseUrl: string = 'http://angular2api2.azurewebsites.net/api/internships';
+  private baseUrl: string = 'http://angular2api2.azurewebsites.net/api/internships/';
 
   constructor(private http: HttpClient) { }
   
@@ -23,7 +23,9 @@ export class QuizApiService {
   }
 
   updateQuiz(quiz: Quiz) : Observable<any> {
-    return undefined;
+    
+    const id = quiz._id
+    return this.http.put<Quiz>(this.baseUrl + id, quiz);
   }
 
   deleteQuiz(id: string) : Observable<any> {

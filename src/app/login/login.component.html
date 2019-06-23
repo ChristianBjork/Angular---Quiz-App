@@ -47,7 +47,9 @@
               <button type="button" mat-button routerLink="../user-registration">Register</button>
             </mat-card-actions>
           </mat-card>
-    
+          <mat-error *ngIf="userDoesntExist">
+              <h4>User does not exist...</h4>
+            </mat-error>
       </form>
   </mat-grid-tile>
   <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>

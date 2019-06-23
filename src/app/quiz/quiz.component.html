@@ -12,9 +12,24 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-button routerLink="../quiz-display/{{quizInput._id}}">Start Quiz</button>
-      <button mat-button (click)="deleteQuiz()" color="warn" >Delete Quiz</button>
+      <button 
+      *ngIf="currentUsername == Admin"
+      mat-button (click)="deleteQuiz()" color="warn" >Delete Quiz</button>
       
-    </mat-card-actions>
+      <span class="example-fill-remaining-space"></span>
+    
+      <mat-icon 
+      [class.highlighted]="isActive"
+      (click)="onClick()"
+      svgIcon="thumbs-up" 
+      aria-hidden="false" 
+      aria-label="Example thumbs up SVG icon"
+      ></mat-icon>
+
+
+      <span>{{ quizInput.like }}</span>
+
+</mat-card-actions>
 
   </mat-card>
   <br>

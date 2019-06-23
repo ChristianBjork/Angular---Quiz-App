@@ -16,6 +16,13 @@ export class UserApiService {
       return this.http.post(this.baseUrl, user)
       
     }
-  
 
+    getAllUsers(): Observable<User[]> {
+
+      return this.http.get<User[]>(this.baseUrl);
+    }
+
+    
+  
+    
 }

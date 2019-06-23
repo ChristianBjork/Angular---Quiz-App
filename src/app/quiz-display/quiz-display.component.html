@@ -1,61 +1,42 @@
-<mat-card style="text-align: center;" id="card" class="example-card">
-  <mat-card-title>
-      {{quizzes.title}}
-  </mat-card-title>
-  <mat-card-content *ngFor="let question of quizzes.questions">
-      <label id="example-radio-group-label"> {{ question.title }} </label>
-      <mat-radio-group 
-        aria-labelledby="example-radio-group-label"
-        class="example-radio-group"
-        [(ngModel)]="chosenAnswer">
-        
-        <mat-radio-button class="example-radio-button" *ngFor="let option of question.options" [value]="option">
-          {{option.answer}}
-        </mat-radio-button>
-      </mat-radio-group>
-      <!-- <div>Your anwser is:  {{chosenAnswer | json}}  </div> -->
-      
 
 
-  
-    </mat-card-content>
+<mat-grid-list cols="4" rowHeight="500px">
+  <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
 
-
-</mat-card>
-
-
-<!-- 
-<div *ngIf="isLoading">
-    <mat-spinner></mat-spinner>
-  </div>
-
-<div *ngIf="!isLoading">
-<div >
-  Quiz title: {{quizzes.title}}
-</div>
-
-<div *ngFor="let question of quizzes.questions">
-  {{question.title}}
-
-  <div *ngFor="let option of question.options">
-    {{option.answer}}
-  </div>
-  
-  <br>
-  
-</div>
-  <mat-grid-list cols="2"rowHeight="2:1" *ngFor="let question of quizzes.questions">
-      <mat-grid-tile class="example-ripple-container mat-elevation-z4" *ngFor="let option of question.options"
-      matRipple
-      [matRippleCentered]="centered"
-      [matRippleColor]="Green">
+  <mat-card  id="card" class="example-card">
+    <mat-card-title>
+        {{quiz.title}}
+    </mat-card-title>
+    <mat-card-content >
+        <label id="example-radio-group-label"> {{ currentQuestion.title }} </label>
+        <mat-radio-group 
+          aria-labelledby="example-radio-group-label"
+          class="example-radio-group" *ngFor="let option of currentQuestion.options"
+          [(ngModel)]="selectedAnswer"
+          >
           
-       
-     
-        {{option.answer}}
-       
-    </mat-grid-tile>
-    </mat-grid-list>
-</div> -->
+          <mat-radio-button  
+          class="example-radio-button"
+          [value]="option.answer" >
+            {{option.answer}}
+          </mat-radio-button>
+          <div class="clearfix"> </div>
+        
+        </mat-radio-group>
+         
+        
+        
+      </mat-card-content>
+      <mat-card-actions>
+          <button *ngIf="isNextQuiz" mat-raised-button color="primary" (click)="onNextQuiz()">Next Quiz</button>
+          <button *ngIf="!isNextQuiz" mat-raised-button color="primary" (click)="onShowResult()">Show Result!</button>
+          <H1 *ngIf="showResult">Hi {{ currentUserName }}! You got {{ correctAnswers }} correct answer{{correctAnswers > 1 || correctAnswers===0?'s':''}}!</H1>
+
+      </mat-card-actions>
+  </mat-card>
+</mat-grid-tile>
+<mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+</mat-grid-list>
 
 
