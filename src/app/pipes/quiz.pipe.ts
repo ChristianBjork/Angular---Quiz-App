@@ -30,17 +30,19 @@ export class QuizLikesPipe implements PipeTransform {
     console.log(quizzes);
     console.log(search);
     
+    // return non piped quizArray 
     if(!search || search === undefined) {return quizzes;}
  
-   
+    // Using Compare Functions to Sort
       quizzes.sort((a: any, b: any) => {
         if(a.like <= b.like) {
+          // over 0 means b before a
           return 1;
         }else {
+          // under 0 means a before b
           return -1
         }
       });
-  
     
     return quizzes.filter(quiz => quiz.like >= search)
   }

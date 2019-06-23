@@ -91,6 +91,7 @@ constructor (
   }); 
   }
 
+  // is yet only used to update like value
   updateLike(quiz: Quiz) {
 
     this.api.updateQuiz(quiz).subscribe(() => {
@@ -106,19 +107,6 @@ constructor (
     })
   }
 
-
-
-  // createRating(rating: Rating, quizId: string) {
-  //   this.ngRedux.dispatch({
-  //     type: QuizActions.CREATE_RATING,
-  //     // payload: {rating: rating, quizId: quizId}
-  //     payload: {rating, quizId}
-  //   })
-  // }
-
- 
-
-  
 
   setLoggedIn(isLoggedIn: boolean): void {
     console.log(isLoggedIn);

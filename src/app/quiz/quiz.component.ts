@@ -20,8 +20,6 @@ export class QuizComponent {
   isActive: boolean;
   currentUsername: string;
 
-  
-
   constructor( 
     private quizActions: QuizActions,
     private ngRedux: NgRedux<AppState>,
@@ -33,26 +31,31 @@ export class QuizComponent {
     
    
     ngOnInit() { 
+
+      // Get currentUser to display delete button if equal to Admin
       this.ngRedux.select(state => state.users.currentUser).subscribe(res => {
         this.currentUsername = res.username;
       })
     }
     
+    // gets prompted if you want to delete a quiz
     deleteQuiz() {
       if(confirm("Are you sure your want to delete " + this.quizInput.title)){
       this.quizActions.deleteQuiz(this.quizInput);
     }
   }
-    
 
+  // stores the quiz clicked in a new quiz object
   emitQuizClicked() {
     this.quizClicked.emit(this.quizInput);
   }
 
   onClick() {
+    // if like button is active -1 else +1
     this.quizInput.like += (this.isActive) ? -1 : 1;
     this.isActive = !this.isActive;
-    
+
+    // update like value in database
     this.quizActions.updateLike(this.quizInput);
 
     

@@ -26,12 +26,15 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    // get state of users
     this.ngRedux.select(state => state.users).subscribe(res => {
       this.users = res.users;
     });
 
+    // calls the api and store the data in the usersState
     this.userActions.getUsers();  
 
+    // FormBuilder to get values from login inputs
     this.loginForm = this.fb.group({
         username: ['', [Validators.required, Validators.minLength(3)]], // multiple validators
         password: ['', Validators.required] // Single validator
@@ -42,22 +45,29 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
+    // store values from login inputs
     this.user.username = this.loginForm.controls.username.value;
     this.user.password = this.loginForm.controls.password.value;
 
-
+    // set currentUser equal to user from database -- if it exists
     const currentUser = this.users.find(cUser => cUser.username === this.user.username && cUser.password === this.user.password)
  
 
+    // if currentUser exist
     if(currentUser !== undefined) {
 
+      // if currentUser is valid
       if(currentUser.username === this.user.username && currentUser.password === this.user.password){
         console.log(currentUser)
+        // update currentUser state
         this.userActions.currentUser(currentUser);
+        // update setLoggedIn to true
         this.userActions.setLoggedIn(true);
+        // navigate to all quizzes
         this.router.navigate(['quiz-portal/quizzes-display']); 
         
       }
+      // display error
     } else {
       console.log("Couldn't be found in database!")
       this.userDoesntExist = true;
@@ -65,36 +75,6 @@ export class LoginComponent implements OnInit {
 
     }
 
-
-    // if (this.loginForm.valid) {
-      
-    //   this.quizActions.setLoggedIn(true);
-      
-      
-    //   // Send the data to the server to verify the user login
-    //   // navigate after successful login.
-      
-    //   if (this.loginForm.value.username === 'admin') {
-    //     //log in as admin
-        
-    //   }
-  
-    
-    //   console.log("First");
-    //   this.authService.login(this.loginForm.value.username).subscribe(result => {
-    //     console.log(result);
-    //     this.router.navigate(['quiz-portal/quizzes-display']);  
-    //   });
-
-    //   console.log("Second");
-      
-    // }
-    // else {
-    //   // Show error message or something else.
-
-    // }
-
   }
-
 
 }

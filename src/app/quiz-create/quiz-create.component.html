@@ -1,4 +1,7 @@
+
+<mat-card class="my-card">
 <form [formGroup]="createQuiz" (ngSubmit)="saveQuiz()">
+    <mat-card-content>
   <div>
     <mat-form-field >
       <input matInput placeholder="Quiz Title" formControlName="title">
@@ -29,9 +32,10 @@
       </div>
     </div>
   </div>
+    </mat-card-content>
+    <mat-card-actions>
 
+     <button mat-raised-button color="primary">Save Quiz</button>
 
-  <button mat-raised-button color="primary">Save Quiz</button>
-
-  
+    </mat-card-actions>
 </form>

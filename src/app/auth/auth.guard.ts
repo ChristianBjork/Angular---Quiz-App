@@ -24,19 +24,22 @@ export class AuthGuard implements CanActivate {
       console.log("AuthGuard on duty here!");
 
 
+    //state of loginStatus, which is set to true if the users login is valid
     this.ngRedux.select(state => state.users).subscribe(res => {
       this.loginStatus = res.isLoggedIn;
     })
 
 
-      
+
+    // allow if loginStatus is true
     if (this.loginStatus) {
       return true;
     }
 
 
+    
     this.redirectUrl = state.url;
-
+    // else deny acces
     this.router.navigate(['/home/login']);
     return false;  // true => yes, you are allowed access, false means no!
   }

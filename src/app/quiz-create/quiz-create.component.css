@@ -16,3 +16,14 @@ background-color: purple !important;
 /*change color of underline when focused*/
 background-color: purple !important;;
 }
+.my-form{
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    
+  }
+   
+  .full-width {
+    width: 100%;
+
+  }

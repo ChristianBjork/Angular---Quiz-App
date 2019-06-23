@@ -27,7 +27,7 @@ describe('workspace-project App', () => {
   })
   //1.1: Verify that we can go to the landing page after logging in
   it('1.1: Verify that we can go to the landing page after logging in', () => {
-    // browser.get('/home/login');
+
 
     //find page elements
     var userNameField = element(by.id('username'));
