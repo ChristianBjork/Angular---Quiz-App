@@ -54,8 +54,9 @@ describe('QuizLikes Pipe Test', () => {
         email: 'test2@mail.dk', 
         gender: Gender.MALE,
         birthDate: new Date(1980,2,6),
-        like: 20
+        
       }, 
+      like: 20,
       title: 'Animals', 
       created: new Date(2019,2,1),
       questions: [
@@ -83,8 +84,8 @@ describe('QuizLikes Pipe Test', () => {
     const pipe = new QuizLikesPipe();
 
     expect(quizzes[0]._id).toEqual(testQuiz1._id);
-    const returnedArray = pipe.transform(quizzes);
-    expect(returnedArray[0]._id).toEqual(testQuiz2._id);
+    const filteredArray = pipe.transform(quizzes, 2);
+    expect(filteredArray[0]._id).toMatch(testQuiz2._id);
 
 
   });

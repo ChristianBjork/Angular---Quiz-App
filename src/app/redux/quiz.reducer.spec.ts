@@ -4,9 +4,9 @@ import { Quiz } from '../entities/quiz';
 import { QuizState } from '../store';
 var deepFreeze = require('deep-freeze');
 
+
 describe('quiz reducer tests', () => {
   
-
   // each it block is a test case.
   it('should set state to true when logging in', () => {
     let startState = {isLoggedIn: undefined, quizzes: [], isLoading: false};

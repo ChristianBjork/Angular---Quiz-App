@@ -3,7 +3,7 @@ import { tassign } from 'tassign';
 import { UserActions } from './user.actions';
 import { User } from '../entities/user';
 
-const INITIAL_STATE: UserState = {users: [], currentUser: new User(), isLoggedIn: false, isLoading: false, }
+const INITIAL_STATE: UserState = {users: [], currentUser: new User(), isLoggedIn: false, isLoading: false }
 
 export function userReducer(state: UserState = INITIAL_STATE, action: any) {
     switch (action.type) {

@@ -6,11 +6,6 @@
   background-image: url('https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/30714642_230030147765902_8684309012201603072_n.jpg?_nc_cat=1&_nc_ht=scontent-arn2-1.xx&oh=c7ae9215528c799c8c02cdd6f11a60b1&oe=5D187F54');
   background-size: cover;
 }
-.example-fill-remaining-space {
-  /* This fills the remaining space, by using flexbox. 
-     Every toolbar row uses a flexbox row layout. */
-  flex: 1 1 auto;
-}
 
 .mat-icon {
   color: rgba(100, 93, 93, 0.411);
@@ -25,4 +20,6 @@
 
 span{
   font-size: 25px;
+  padding-left: 10px;
+  
 }

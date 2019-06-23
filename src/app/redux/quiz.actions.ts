@@ -23,8 +23,6 @@ constructor (
   static DELETE_QUIZ_SUCCES: string = 'GET_QUIZZES_SUCCES';
   static DELETE_QUIZ_FAILED: string = 'GET_QUIZZES_FAILED';
 
-  static GET_QUIZ: string = 'GET_QUIZ';
-
   static GET_QUIZZES_LOADING: string = 'GET_QUIZZES_LOADING';
   static GET_QUIZZES_SUCCESS: string = 'GET_QUIZZES_SUCCESS';
   static GET_QUIZZES_FAILED: string = 'GET_QUIZZES_FAILED';
@@ -33,27 +31,7 @@ constructor (
   static LOG_IN: string = 'LOG_IN'; 
   static CREATE_LIKE: string = 'CREATE_LIKE';
 
-  getQuiz(id: string) : void { 
-    this.ngRedux.dispatch({ type: QuizActions.GET_QUIZZES_LOADING }); // start a "spinner"
 
-    // call the ws
-    this.api.getAllQuizzes().subscribe(quizzes => {
-      console.log(quizzes.find(quiz => quiz._id === id));
-      this.ngRedux.dispatch({
-        type: QuizActions.GET_QUIZZES_SUCCESS,
-        payload: quizzes.find(quiz => quiz._id === id)
-      })
-    }, error => {
-      this.ngRedux.dispatch({
-        type: QuizActions.GET_QUIZZES_FAILED,
-        payload: error
-      })
-    });
-  }
-  
-  
-
-  
   getQuizzes() : void {
     this.ngRedux.dispatch({ type: QuizActions.GET_QUIZZES_LOADING }); // start a "spinner"
 

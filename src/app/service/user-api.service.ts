@@ -22,6 +22,18 @@ export class UserApiService {
       return this.http.get<User[]>(this.baseUrl);
     }
 
+    updateQuiz(user: User) : Observable<any> {
+    
+      const id = user._id
+      return this.http.put<User>(this.baseUrl + id, user);
+    }
+  
+    deleteQuiz(id: string) : Observable<any> {
+    
+      const url = `${this.baseUrl}/${id}`;
+  
+      return this.http.delete(url, {responseType: 'text'});
+    }
     
   
     
