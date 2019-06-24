@@ -41,20 +41,19 @@ export class QuizCreateComponent implements OnInit {
   }
 
   saveQuiz() {
-    // console.log(this.createQuiz.value);
     
-    // save a user who created this quiz.
-    // hardcode a user until we have a proper login.
+    // save currenUser as creator of the quiz
     let quiz = this.createQuiz.value as Quiz;
     quiz.user = this.user
     quiz.like = 10;
 
 
+    //Dispatch createQuiz action
     this.quizActions.createQuiz(quiz)
     this.router.navigate(['quiz-portal/quizzes-display']);
     
   }
-
+  // if pushed, a new formGroup is created
   createNewQuestion() {
     const question = this.fb.group({
       title: ['', Validators.required],
@@ -68,7 +67,9 @@ export class QuizCreateComponent implements OnInit {
     
     questions.push(question);
   }
+
   createNewOption(questionIndex: number){
+
     const option = this.createNewOptionGroup();
     const questions = this.createQuiz.controls.questions as FormArray;
     
@@ -76,6 +77,8 @@ export class QuizCreateComponent implements OnInit {
     
     options.push(option);
   }
+
+  // Returns new formGroup, this is used in the above functions 
   private createNewOptionGroup(): FormGroup {
     return this.fb.group({
       answer: ['', Validators.required],

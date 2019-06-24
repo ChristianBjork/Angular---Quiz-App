@@ -5,7 +5,7 @@ import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgRedux } from '@angular-redux/store';
 import { AppState } from '../store';
-import { User } from '../entities/user';
+
 
 @Component({
   selector: 'app-quiz',

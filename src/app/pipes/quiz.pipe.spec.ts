@@ -85,7 +85,7 @@ describe('QuizLikes Pipe Test', () => {
 
     expect(quizzes[0]._id).toEqual(testQuiz1._id);
     const filteredArray = pipe.transform(quizzes, 2);
-    expect(filteredArray[0]._id).toMatch(testQuiz2._id);
+    expect(filteredArray[0]._id).toEqual(testQuiz2._id);
 
 
   });

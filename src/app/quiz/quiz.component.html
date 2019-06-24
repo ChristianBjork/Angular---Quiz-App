@@ -12,8 +12,8 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-button routerLink="../quiz-display/{{quizInput._id}}" color="primary" >Start Quiz</button>
-      <button *ngIf="currentUsername == Admin"
-      mat-button (click)="deleteQuiz()" color="warn" >
+      <button *ngIf="currentUsername == 'Admin'"
+      mat-button (click)="deleteQuiz()" color="warn">
       Delete Quiz</button>
     
       <mat-icon 

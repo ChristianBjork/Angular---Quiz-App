@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 
 export class QuizDisplayComponent implements OnInit {
+
   quizzes: Quiz[];
   quiz: Quiz = new Quiz();
   selectedAnswer: string;
@@ -32,17 +33,22 @@ export class QuizDisplayComponent implements OnInit {
   ngOnInit() {
 
 
+    // get the state of all quizzes
     this.ngRedux.select(state => state.quizzes).subscribe(res => {
       this.quizzes = res.quizzes;
     });
 
+    // get the state of the currentUser
     this.ngRedux.select(state => state.users.currentUser).subscribe(res => {
       this.currentUserName = res.username;
     })
 
+    // store url id in id variable
     const id = this.route.snapshot.paramMap.get('id');
 
+    // store the quiz with the url id into new quiz object
     this.quiz = this.quizzes.find(q => q._id === id);
+    
     this.currentQuestion = this.quiz.questions[0];
     if (this.quiz.questions[this.i] == undefined) {
       this.isNextQuiz = false
